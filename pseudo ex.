@@ -1,0 +1,18 @@
+#pythonprgm
+
+#beräkning av summan 1+2+3+ .. +n
+n = int(input("n?  "))
+summa = 0 
+k = 1 
+while k <= n:
+    summa = summa + k    #öka summan med k
+    k = k + 1           #öka k med 1
+print ("summan blir ", summa)
+
+#pseudokod 
+"""Läs in ett värde till n
+Använd en variabel summa som sätts till 0 och en räknare k som sätts till 1..
+Upprepa följande två rader så länge som k är mindre än eller lika med n:
+    Öka summan med k.
+    Öka kk med ett.
+Skriv ut summa som resultat."""
