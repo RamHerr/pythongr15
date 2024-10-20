@@ -211,11 +211,12 @@ def spela_gissatalet():
                 bra_gissningar_i_rad = 0       #Variabler för uträkning av "god gissningsstrategi"
             if bra_gissningar_i_rad >= 3:
                 print("Du använder bevisligen en bra gissningsstrategi!")
+
+            break
+
 """Bör aldrig ta fler än 7 gissningar, även om vi jobbar från 1-200,
  då om vi halverar antal möjligheter nog antal gånger så bör vi komma fram till rätt svar på 7 gissningar. 
  Detta kallas i finare termer en binärsökning."""
-            break
-
 
 #Whileloop för huvudmenyn, är igång tills att användaren väljer ett av alternativen (1-4).
 while True:
