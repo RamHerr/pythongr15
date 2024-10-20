@@ -1,8 +1,8 @@
 #Ett program där användaren spelar spelet "Hänga Gubben".
 
-import random #Import random-modulen som genererar slumpmässiga tal för val av ord.
+import random #Import random-modulen som genererar slumpmässiga tal för valet av slumpord.
 
-#Den färdiga ordlistan med tillhörande betydelse.
+#Den färdiga ordlistan från uppgiften med tillhörande betydelser.
 ordlista = ["Vispgrädde", "Ukulele", "Innebandyspelare", "Flaggstång", "Yxa", "Havsfiske", "Prisma",
             "Landsbygd", "Generositet", "Lyckosam", "Perrong", "Samarbeta", "Välartad"]
 betydelse = ["Uppvispad grädde",
@@ -86,44 +86,46 @@ gubben = [
     """
 ]
 
-#Funktion för ordslumpning och returnanrop för ordbetydelse av samma värde i slumpindex.
+#Definition av slumpord: val av ord: returnanrop för betydelse av samma värde.
 def slumpaOrd():
     slumpIndex = random.randint(0, len(ordlista) - 1)
     return ordlista[slumpIndex], betydelse[slumpIndex]
 
-#Printfunktion för att visa gubben med ASCII-grafik baserat på "antal misslyckade försök".
+#Definition av "visa_gubben": print ASCII baserat på "antal misslyckade försök".
 def visa_gubben(forsok):
     print(gubben[6 - forsok])
 
-#Samlade funktioner för det valda ordet
+"""Definierar spelomgång: "slumpaOrd" ordval+beskrivning:
+Valt ord defineras i lowercase: "gissad_bokstav" för bokstäver i valt ord"""
 def spela_omgang():
     valt_ord, vald_beskrivning = slumpaOrd()
-    valt_ord = valt_ord.lower() #Gör ordet till små bokstäver.
+    valt_ord = valt_ord.lower()
     gissad_bokstav = ['_' for _ in valt_ord]
-    attempts = 6 #Antal tillåtna gissningar.
-    gissat_fel = [] #Lista för felaktiga gissningar.
+    attempts = 6                                #Antal tillåtna gissningar.
+    gissat_fel = []                             #Lista för felaktiga gissningar.
+
 
     print("\nVälkommen till Hänga gubben!")
     print(" ".join(gissad_bokstav))
 
+#Funktioner för återstående försök: fler än 0: antal försök kvar: tidigare gissningar.
     while attempts > 0 and '_' in gissad_bokstav:
-        #Visa återstående försök och felaktiga gissningar.
         print(f"\nDu har {attempts} försök kvar.")
         print("Felaktiga gissningar: ", " ".join(gissat_fel))
         visa_gubben(attempts) #Visa gubben baserat på antalet försök.
 
-        #Spelaren gissar en bokstav.
+        #Inputfunktion för bokstavsgissning.
         gissning = input("Gissa en bokstav: ").lower()
 
-        #Felkontroll för inmatning av bokstavsgissning.
+        #Felkontroll av inmatning av bokstavsgissning: felaktigt tecken och antal tecken.
         if not gissning.isalpha() or len(gissning) != 1:
             print("Ogiltigt val! Du måste gissa på en enda bokstav.")
             continue
-        if gissning in gissat_fel or gissning in gissad_bokstav:
+        if gissning in gissat_fel or gissning in gissad_bokstav:    #felkontroll: redan gissat tecken.
             print(f"Du har redan gissat '{gissning}'!")
             continue
 
-        #Kontrollera om bokstavsgissningen var korrekt ´else´ fel gissning.
+        #Kontrollera om bokstavsgissningen var korrekt: ´else´ "fel gissning.": runda dragen.
         if gissning in valt_ord:
             for i, letter in enumerate(valt_ord):
                 if letter == gissning:
@@ -134,10 +136,10 @@ def spela_omgang():
             gissat_fel.append(gissning)
             print(f"\nFel gissning! '{gissning}' finns inte i ordet.")
 
-        #printfunktion för input av bokstavsgissning
+        #printfunktion för gissad bokstav
         print(" ".join(gissad_bokstav))
 
-    #Visa den slutgiltiga hängda gubben efter X-antal (försök).
+    #Definiera hängda gubben efter X-antal (försök).
     visa_gubben(attempts)
 
     #Print om spelaren vann eller förlorade och skriv ut valda ordet eller/och beskrivningen av ordet.
