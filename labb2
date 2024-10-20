@@ -139,7 +139,7 @@ def spela_omgang():
         #printfunktion för gissad bokstav
         print(" ".join(gissad_bokstav))
 
-    #Definiera hängda gubben efter X-antal (försök).
+    #Definiera hängda gubben efter antal (försök).
     visa_gubben(attempts)
 
     #Print om spelaren vann eller förlorade och skriv ut valda ordet eller/och beskrivningen av ordet.
